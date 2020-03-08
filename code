@@ -1,0 +1,426 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+use IEEE.std_logic_unsigned.all;
+
+entity Projet is
+	Port ( SWO : in STD_LOGIC;
+	       SWI : in STD_LOGIC;
+	       SWII : in STD_LOGIC;
+	       SWIII : in STD_LOGIC;
+	       SWIV : in STD_LOGIC;
+			 SWV : in STD_LOGIC;
+			 SWVI : in STD_LOGIC;
+			 
+			 
+			 HEXO : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 HEXI : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 HEXII : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 HEXIII : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 HEXIV : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 HEXV : out STD_LOGIC_VECTOR (6 DOWNTO 0);
+			 
+			 clk : in STD_LOGIC
+			 );
+end Projet;
+
+
+
+
+architecture behavioral of Projet is
+
+signal a : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0001000";
+signal m : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1101010";
+signal t : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0000111";
+signal h : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0001011";
+signal i : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1001111";
+signal c : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1000110";
+signal r : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1001100";
+signal s : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0010010";
+signal d : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0100001";
+signal b : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0000011";
+signal e : STD_LOGIC_VECTOR (6 DOWNTO 0):= "0000110";
+signal n : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1001000";
+signal g : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1000010";
+signal u : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1000001";
+signal l : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1000111";
+signal o : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1000000";
+signal Tiret : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1110111";
+signal clr : STD_LOGIC_VECTOR (6 DOWNTO 0):= "1111111";
+
+signal cnt : integer := 0;
+signal vit : integer := 1;
+
+begin
+
+process (clk)
+begin
+
+      if (rising_edge(clk)) then
+	   cnt <= cnt + 1;
+      end if;
+
+	
+	   if ((SWO = '0' and SWI ='0' and SWII = '0') or (SWO = '0' and SWI ='1' and SWII = '1') or (SWO = '1' and SWI ='0' and SWII = '1') or (SWO = '1' and SWI ='1' and SWII = '0') or (SWO = '1' and SWI ='1' and SWII = '1')) then
+       	HEXO <= clr;
+			HEXI <= clr;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+			
+      end if;
+	
+	   if (SWO = '1' and SWI ='0' and SWII = '0' and SWIII = '0') then
+       	HEXO <= s;
+			HEXI <= g;
+			HEXII <= b;
+			HEXIII <= t;
+			HEXIV <= c;
+			HEXV <= m;
+			cnt <= 0;
+      end if;
+	
+	   if (cnt >= 0 and cnt < 10000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= m;
+			HEXI <= clr;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 10000000/vit and cnt < 20000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= a;
+			HEXI <= m;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 20000000/vit and cnt < 30000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= t;
+			HEXI <= a;
+			HEXII <= m;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 30000000/vit and cnt < 40000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= h;
+			HEXI <= t;
+			HEXII <= a;
+			HEXIII <= m;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+  	   if (cnt >= 40000000/vit and cnt < 50000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= i;
+			HEXI <= h;
+			HEXII <= t;
+			HEXIII <= a;
+			HEXIV <= m;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 50000000/vit and cnt < 70000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then 
+	      HEXO <= s;
+			HEXI <= i;
+			HEXII <= h;
+			HEXIII <= t;
+			HEXIV <= a;
+			HEXV <= m;
+		end if;
+  	  
+	   if (cnt > 70000000/vit and SWO = '0' and SWI ='1' and SWII = '0' and SWIII = '0') then
+	     cnt <= 0;
+	   end if;
+	
+	   if (cnt >= 0 and cnt < 10000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= t;
+			HEXI <= clr;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 10000000/vit and cnt < 20000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= a;
+			HEXI <= t;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 20000000/vit and cnt < 30000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= s;
+			HEXI <= a;
+			HEXII <= t;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 30000000/vit and cnt < 40000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= n;
+			HEXI <= s;
+			HEXII <= a;
+			HEXIII <= t;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+  	   if (cnt >= 40000000/vit and cnt < 50000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= i;
+			HEXI <= n;
+			HEXII <= s;
+			HEXIII <= a;
+			HEXIV <= t;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 50000000/vit and cnt < 70000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then 
+	      HEXO <= m;
+			HEXI <= i;
+			HEXII <= h;
+			HEXIII <= s;
+			HEXIV <= a;
+			HEXV <= t;
+		end if;
+  	  
+	   if (cnt > 70000000/vit and SWO = '0' and SWI ='0' and SWII = '1' and SWIII = '0') then
+	     cnt <= 0;
+	   end if;
+	
+	  
+      if (SWIV = '1') then
+	   vit <= 3;
+	end if;
+	
+	   if (SWIV = '0') then 
+	   vit <= 1;
+	   end if;
+	
+	
+		if (cnt >= 0 and cnt < 10000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= t;
+			HEXI <= clr;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 10000000/vit and cnt < 20000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= a;
+			HEXI <= t;
+			HEXII <= clr;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 20000000/vit and cnt < 30000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= s;
+			HEXI <= a;
+			HEXII <= t;
+			HEXIII <= clr;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 30000000/vit and cnt < 40000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= n;
+			HEXI <= s;
+			HEXII <= a;
+			HEXIII <= t;
+			HEXIV <= clr;
+			HEXV <= clr;
+		end if;
+		
+  	   if (cnt >= 40000000/vit and cnt < 50000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= i;
+			HEXI <= n;
+			HEXII <= s;
+			HEXIII <= a;
+			HEXIV <= t;
+			HEXV <= clr;
+		end if;
+		
+		if (cnt >= 50000000/vit and cnt < 60000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= m;
+			HEXI <= i;
+			HEXII <= n;
+			HEXIII <= s;
+			HEXIV <= a;
+			HEXV <= t;
+		end if;
+  	  
+	   if (cnt >= 60000000/vit and cnt < 70000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= Tiret;
+			HEXI <= m;
+			HEXII <= i;
+			HEXIII <= n;
+			HEXIV <= s;
+			HEXV <= a;
+		end if;
+		
+		if (cnt >= 70000000/vit and cnt < 80000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= m;
+			HEXI <= Tiret;
+			HEXII <= m;
+			HEXIII <= i;
+			HEXIV <= n;
+			HEXV <= s;
+		end if;
+	  
+	   if (cnt >= 80000000/vit and cnt < 90000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= a;
+			HEXI <= m;
+			HEXII <= Tiret;
+			HEXIII <= m;
+			HEXIV <= i;
+			HEXV <= n;
+		end if;
+		
+	   if (cnt >= 90000000/vit and cnt < 100000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= t;
+			HEXI <= a;
+			HEXII <= m;
+			HEXIII <= Tiret;
+			HEXIV <= m;
+			HEXV <= i;
+		end if;
+		
+		if (cnt >= 100000000/vit and cnt < 110000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= h;
+			HEXI <= t;
+			HEXII <= a;
+			HEXIII <= m;
+			HEXIV <= Tiret;
+			HEXV <= m;
+		end if;
+		
+		if (cnt >= 110000000/vit and cnt < 120000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= i;
+			HEXI <= h;
+			HEXII <= t;
+			HEXIII <= a;
+			HEXIV <= m;
+			HEXV <= Tiret;
+		end if;
+		
+		if (cnt >= 120000000/vit and cnt < 130000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= s;
+			HEXI <= i;
+			HEXII <= h;
+			HEXIII <= t;
+			HEXIV <= a;
+			HEXV <= m;
+		end if;
+	  
+	   if (cnt >= 130000000/vit and cnt < 140000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= Tiret;
+			HEXI <= s;
+			HEXII <= i;
+			HEXIII <= h;
+			HEXIV <= t;
+			HEXV <= a;
+		end if;
+		
+		if (cnt >= 140000000/vit and cnt < 150000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= g;
+			HEXI <= Tiret;
+			HEXII <= s;
+			HEXIII <= i;
+			HEXIV <= h;
+			HEXV <= t;
+		end if;
+	  
+	   if (cnt >= 150000000/vit and cnt < 160000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= u;
+			HEXI <= g;
+			HEXII <= Tiret;
+			HEXIII <= s;
+			HEXIV <= i;
+			HEXV <= h;
+		end if;
+	  
+	   if (cnt >= 160000000/vit and cnt < 170000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= i;
+			HEXI <= u;
+			HEXII <= g;
+			HEXIII <= Tiret;
+			HEXIV <= s;
+			HEXV <= i;
+		end if;
+		
+		if (cnt >= 170000000/vit and cnt < 180000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= l;
+			HEXI <= i;
+			HEXII <= u;
+			HEXIII <= g;
+			HEXIV <= Tiret;
+			HEXV <= s;
+		end if;
+		
+		if (cnt >= 180000000/vit and cnt < 190000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= l;
+			HEXI <= l;
+			HEXII <= i;
+			HEXIII <= u;
+			HEXIV <= g;
+			HEXV <= Tiret;
+		end if;
+		
+		if (cnt >= 190000000/vit and cnt < 200000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= a;
+			HEXI <= l;
+			HEXII <= l;
+			HEXIII <= i;
+			HEXIV <= u;
+			HEXV <= g;
+		end if;
+		
+		if (cnt >= 200000000/vit and cnt < 210000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= u;
+			HEXI <= a;
+			HEXII <= l;
+			HEXIII <= l;
+			HEXIV <= i;
+			HEXV <= u;
+		end if;
+		
+		if (cnt >= 210000000/vit and cnt < 220000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= m;
+			HEXI <= u;
+			HEXII <= a;
+			HEXIII <= l;
+			HEXIV <= l;
+			HEXV <= i;
+		end if;
+		
+		if (cnt >= 220000000/vit and cnt < 260000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+	      HEXO <= e;
+			HEXI <= m;
+			HEXII <= u;
+			HEXIII <= a;
+			HEXIV <= l;
+			HEXV <= l;
+		end if;
+		
+	   if (cnt > 260000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then
+	       cnt <= 0;
+	   end if;
+	
+	
+	
+		 
+end process;		 
+		 
+end behavioral;
