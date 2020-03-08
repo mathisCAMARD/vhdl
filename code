@@ -405,7 +405,7 @@ begin
 			HEXV <= i;
 		end if;
 		
-		if (cnt >= 220000000/vit and cnt < 260000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
+		if (cnt >= 220000000/vit and cnt < 240000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then 
 	      HEXO <= e;
 			HEXI <= m;
 			HEXII <= u;
@@ -414,7 +414,7 @@ begin
 			HEXV <= l;
 		end if;
 		
-	   if (cnt > 260000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then
+	   if (cnt > 240000000/vit and SWO = '0' and SWI ='0' and SWII = '0' and SWIII = '1') then
 	       cnt <= 0;
 	   end if;
 	
